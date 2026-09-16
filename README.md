@@ -16,6 +16,21 @@ hyphens. A tree may contain at most 5,000 nodes and be at most 32 levels deep.
 The canonical machine-readable definition is [openapi.json](openapi.json).
 Run `npm test` to verify the contract and example payload.
 
+## Run the complete application
+
+Clone the contract, backend, and frontend repositories into sibling directories
+with their default names, then run from this repository:
+
+```sh
+docker compose up --build
+```
+
+Open `http://localhost:4173`. The API is available at
+`http://localhost:8787`, and tree data is retained in the `tree-data` volume.
+The contract tests must pass before the backend starts; the frontend waits for
+the backend health check. Stop the application with `docker compose down`, or
+also remove saved tree data with `docker compose down --volumes`.
+
 ## Integration order
 
 Merge this contract before the backend and frontend changes. The consumer PRs
